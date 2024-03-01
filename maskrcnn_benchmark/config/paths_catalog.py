@@ -7,7 +7,7 @@ import copy
 
 class DatasetCatalog(object):
     #DATA_DIR = "/home/users/alatif/data/ImageCorpora/"
-    DATA_DIR = "/media/rafi/Samsung_T5/_DATASETS/"
+    DATA_DIR = "/home/kim/mini_cond_sgg_env/Scene-Graph-Benchmark/datasets"
     DATASETS = {
         "coco_2017_train": {
             "img_dir": "coco/train2017",
@@ -118,6 +118,20 @@ class DatasetCatalog(object):
             "dict_file": "vg/VG-SGG-dicts-with-attri.json",
             "image_file": "vg/image_data.json",
             "capgraphs_file": "vg/vg_capgraphs_anno.json",
+        },
+        
+        #Custom Dataset
+        "VG_Ata": {
+            "img_dir": "vg_ata/renumbered_fiona_images",
+            "roidb_file": "vg_ata/VG-SGG-with-attri-2592.h5",
+            "dict_file": "vg_ata/VG-SGG-dicts-with-attri-2592.json",
+            "image_file": "vg_ata/image_data.json",
+        },
+        "VG_1024": {
+            "img_dir": "vg_1024/1024_images",
+            "roidb_file": "vg_1024/updated1024VG-SGG-with-attri.h5",
+            "dict_file": "vg_1024/updated1024VG-SGG-dicts-with-attri.json",
+            "image_file": "vg_1024/1024image_data.json",
         },
     }
 

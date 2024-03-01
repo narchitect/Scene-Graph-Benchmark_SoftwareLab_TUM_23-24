@@ -17,7 +17,7 @@ BOX_SCALE = 1024  # Scale at which we have the boxes
 class VGDataset(torch.utils.data.Dataset):
 
     def __init__(self, split, img_dir, roidb_file, dict_file, image_file, transforms=None,
-                filter_empty_rels=True, num_im=-1, num_val_im=5000,
+                filter_empty_rels=True, num_im=-1, num_val_im=0,
                 filter_duplicate_rels=True, filter_non_overlap=True, flip_aug=False, custom_eval=False, custom_path=''):
         """
         Torch dataset for VisualGenome
@@ -34,6 +34,7 @@ class VGDataset(torch.utils.data.Dataset):
             num_val_im: Number of images in the validation set (must be less than num_im
                unless num_im is -1.)
         """
+        #change num_val_im = 0 because our dataset doesn't have. "kim"
         # for debug
         # num_im = 10000
         # num_val_im = 4
@@ -190,8 +191,9 @@ class VGDataset(torch.utils.data.Dataset):
 
 def get_VG_statistics(img_dir, roidb_file, dict_file, image_file, must_overlap=True):
     train_data = VGDataset(split='train', img_dir=img_dir, roidb_file=roidb_file, 
-                        dict_file=dict_file, image_file=image_file, num_val_im=5000, 
+                        dict_file=dict_file, image_file=image_file, num_val_im=0, 
                         filter_duplicate_rels=False)
+    #change num_val_im = 0 because our dataset doesn't have.
     num_obj_classes = len(train_data.ind_to_classes)
     num_rel_classes = len(train_data.ind_to_predicates)
     fg_matrix = np.zeros((num_obj_classes, num_obj_classes, num_rel_classes), dtype=np.int64)
@@ -220,10 +222,10 @@ def box_filter(boxes, must_overlap=False):
     If no overlapping boxes, use all of them."""
     n_cands = boxes.shape[0]
 
-    overlaps = bbox_overlaps(boxes.astype(np.float), boxes.astype(np.float), to_move=0) > 0
+    overlaps = bbox_overlaps(boxes.astype(float), boxes.astype(float), to_move=0) > 0
     np.fill_diagonal(overlaps, 0)
 
-    all_possib = np.ones_like(overlaps, dtype=np.bool)
+    all_possib = np.ones_like(overlaps, dtype=np.bool_)
     np.fill_diagonal(all_possib, 0)
 
     if must_overlap:
@@ -314,8 +316,9 @@ def load_image_filenames(img_dir, image_file):
         if os.path.exists(filename):
             fns.append(filename)
             img_info.append(img)
-    assert len(fns) == 108073
-    assert len(img_info) == 108073
+    print(len(fns), len(img_info)) 
+    assert len(fns) == 377 #our dataset has 377 image
+    assert len(img_info) == 377 #our dataset has 377 image
     return fns, img_info
 
 

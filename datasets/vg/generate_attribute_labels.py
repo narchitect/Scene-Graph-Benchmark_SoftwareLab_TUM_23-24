@@ -15,6 +15,7 @@ import torch
 import numpy as np
 
 
+
 # In[2]:
 
 
@@ -25,17 +26,17 @@ get_ipython().system('ls')
 
 
 # generated SGG labels
-image_data = json.load(open('image_data.json'))
-vg_sgg_dicts = json.load(open('VG-SGG-dicts.json'))
-vg_sgg = h5py.File('VG-SGG.h5', 'r')
+image_data = json.load(open('image_data-Fiona.json'))
+vg_sgg_dicts = json.load(open('VG-SGG-dicts-Fiona.json'))
+vg_sgg = h5py.File('VG-SGG-Fiona.h5', 'r')
 
 # download from https://visualgenome.org
 # objects.json from https://visualgenome.org/static/data/dataset/objects_v1_2.json.zip
 # attributes.json from https://visualgenome.org/static/data/dataset/attributes.json.zip
 # attribute_synsets.json from https://visualgenome.org/static/data/dataset/attribute_synsets.json.zip
-original_objects = json.load(open("objects.json"))
-original_attributes = json.load(open("attributes.json"))
-original_attribute_synsets = json.load(open("attribute_synsets.json"))
+original_objects = json.load(open("objects-fiona.json"))
+original_attributes = json.load(open("attributes-fiona.json"))
+original_attribute_synsets = json.load(open("attribute_synsets-fiona.json"))
 
 
 # In[4]:

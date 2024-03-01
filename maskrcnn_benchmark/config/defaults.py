@@ -35,6 +35,7 @@ _C.MODEL.CLS_AGNOSTIC_BBOX_REG = False
 # If the WEIGHT starts with a catalog://, like :R-50, the code will look for
 # the path in paths_catalog. Else, it will use it as the specified absolute
 # path
+
 _C.MODEL.WEIGHT = ""
 
 # checkpoint of detector, for relation prediction
